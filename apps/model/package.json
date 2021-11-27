@@ -1,0 +1,14 @@
+{
+  "name": "model",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "check": "npm run typecheck && npm run lint",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx src",
+    "lint-fix": "npm run lint -- --fix",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "slate": "^0.66.5"
+  }
+}

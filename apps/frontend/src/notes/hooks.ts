@@ -4,7 +4,7 @@ import useSWR from 'swr'
 import { NotesResponse, NoteResponse } from '../../../backend/routes/notes'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 
-// If you want to use GraphQL API or libs like Axios, you can create your own fetcher function. 
+// If you want to use GraphQL API or libs like Axios, you can create your own fetcher function.
 // Check here for more examples: https://swr.vercel.app/docs/data-fetching
 const fetcher = async (
   input: RequestInfo,
@@ -33,7 +33,6 @@ export const useNote = (id: string) => {
       sendMessage('')
     }
   }, [readyState, lastMessage])
-  
 
   return {
     note: lastMessage && JSON.parse(lastMessage.data) as NoteResponse,
