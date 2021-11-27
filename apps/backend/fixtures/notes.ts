@@ -9,16 +9,34 @@ export const NOTE_1 = {
       children: [{ text: 'Action Items' }],
     },
     {
-      type: 'list-item',
-      children: [{ text: 'Get milk from the store' }],
-    },
-    {
-      type: 'list-item',
-      children: [{ text: 'Finish engineering test' }],
-    },
-    {
-      type: 'list-item',
-      children: [{ text: 'Call mom about vacation' }],
+      type: 'bulleted-list',
+      children: [
+       {
+         type: 'list-item',
+         children: [{ text: 'Get milk from the store' }],
+       },
+       {
+         type: 'list-item',
+         children: [{ text: 'Finish engineering test' }],
+       },
+       {
+         type: 'list-item',
+         children: [{ text: 'Call mom about vacation' }],
+       },
+       {
+         type: 'bulleted-list',
+         children: [
+	   {
+	     type: 'list-item',
+	     children: [{ text: 'Pick a location'}],
+           },
+	   {
+	     type: 'list-item',
+	     children: [{ text: 'Book transportation'}],
+           },
+         ]
+       },
+     ],
     },
   ] as unknown as Array<Descendant>
 }
@@ -54,8 +72,14 @@ export const NOTE_2 = {
       ],
     },
     {
-      type: 'list-item',
-      children: [{ text: 'Here is a bullet' }],
+      type: 'bulleted-list',
+      children: [
+             {
+              type: 'list-item',
+              children: [{ text: 'Here is a bullet' }],
+	      
+             },
+     ],
     },
     {
       type: 'block-quote',
