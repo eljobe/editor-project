@@ -1,11 +1,11 @@
 import admin from 'firebase-admin'
 
-// Replace this file with your service account key you get when setting up a firestore.
+// The service account key for accessing firestore.
 import serviceAccount from './serviceAccountKey.json'
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://databaseName.firebaseio.com"
+  databaseURL: "https://editor-pepper.firebaseio.com"
 })
 
 export default admin.database()
