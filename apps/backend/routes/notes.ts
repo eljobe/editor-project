@@ -35,7 +35,7 @@ const notesHandler: RequestHandler = (_req, res: Response<NotesResponse>) => {
       title: v.title
     });
   }
-  res.json(data)
+  res.json(data);
 }
 
 const noteHandler: WebsocketRequestHandler = (ws, req) => {
@@ -49,6 +49,12 @@ const noteHandler: WebsocketRequestHandler = (ws, req) => {
   })
 }
 
+const newNoteHandler: RequestHandler = async (_req, res: Response<NoteResponse>) => {
+  const note = await db.createNote();
+  res.json(note);
+}
+
+router.get('/new', newNoteHandler)
 router.get('/', notesHandler)
 router.ws('/:id', noteHandler)
 

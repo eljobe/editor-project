@@ -24,6 +24,10 @@ export const useNotesList = () => {
   }
 }
 
+export const newNote = async () => {
+  fetch('http://localhost:3001/api/notes/new')
+}
+
 export const useNote = (id: string) => {
   const { readyState, lastMessage, sendMessage } = useWebSocket(`ws://localhost:3001/api/notes/${id}`)
 

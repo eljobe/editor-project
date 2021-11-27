@@ -1,6 +1,6 @@
-import React from 'react'
-import { Toolbar, Typography, Drawer, Divider, Box, Container } from '@mui/material'
-import { NotesList } from '../notes'
+import React, { MouseEventHandler } from 'react'
+import { Toolbar, Typography, Drawer, Divider, Box, Button, Container } from '@mui/material'
+import { NotesList, CreateButton } from '../notes'
 
 const drawerWidth = 240
 
@@ -29,6 +29,7 @@ const Interface: React.FC<InterfaceProps> = ({ activeNoteId, children }) => {
           >
             Notes
           </Typography>
+          <CreateButton />
         </Toolbar>
         <Divider />
         <NotesList activeNoteId={activeNoteId} />

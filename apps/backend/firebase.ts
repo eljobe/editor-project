@@ -14,9 +14,6 @@ import {
 } from 'firebase/firestore';
 import { Note } from 'model/note'
 
-// The service account key for accessing firestore.
-import serviceAccount from './serviceAccountKey.json'
-
 initializeApp({
   apiKey: "AIzaSyCo_k4KIhJnzhztRHJSvTLCm4WjyyipvT4",
   authDomain: "editor-pepper.firebaseapp.com",
@@ -51,6 +48,24 @@ class NotesDatabase {
         }
       });
     });
+  }
+  async createNote() {
+    const defaultContent = [
+      {
+        type: "paragraph",
+        children: [
+          { text: "Hello World" }
+        ]
+      }
+    ];
+    const defaultTitle = 'Untitled';
+    const docRef = await addDoc(collection(getFirestore(), 'notes'), {
+      title: defaultTitle,
+      content: defaultContent,
+    });
+    const freshNote = new Note(docRef.id, defaultTitle, defaultContent);
+    this.notes.set(freshNote.id, freshNote);
+    return freshNote;
   }
 }
 
