@@ -19,6 +19,9 @@ out/
 .DS_Store
 *.pem
 
+# secrets
+apps/backend/serviceAccountKey.json
+
 # debug
 npm-debug.log*
 yarn-debug.log*
