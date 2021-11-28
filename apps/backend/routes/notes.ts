@@ -1,9 +1,6 @@
 import express, { RequestHandler, Response } from 'express'
 import { WebsocketRequestHandler } from 'express-ws'
 import { Descendant } from 'slate'
-import { NOTE_1, NOTE_2 } from '../fixtures/notes'
-import { collection, getDocs } from 'firebase/firestore'
-import { Note } from 'model/note'
 import db from '../firebase'
 
 // Patch `express.Router` to support `.ws()` without needing to pass around a `ws`-ified app.
@@ -29,7 +26,7 @@ export interface NoteResponse {
 
 const notesHandler: RequestHandler = (_req, res: Response<NotesResponse>) => {
   const data = { notes: [] } as NotesResponse;
-  for (const [k, v] of db.notes) {
+  for (const v of db.notes.values()) {
     data.notes.push({
       id: v.id,
       title: v.title

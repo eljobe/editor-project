@@ -26,13 +26,13 @@ export const NOTE_1 = {
        {
          type: 'bulleted-list',
          children: [
-	   {
-	     type: 'list-item',
-	     children: [{ text: 'Pick a location'}],
+     {
+       type: 'list-item',
+       children: [{ text: 'Pick a location'}],
            },
-	   {
-	     type: 'list-item',
-	     children: [{ text: 'Book transportation'}],
+     {
+       type: 'list-item',
+       children: [{ text: 'Book transportation'}],
            },
          ]
        },
@@ -77,7 +77,6 @@ export const NOTE_2 = {
              {
               type: 'list-item',
               children: [{ text: 'Here is a bullet' }],
-	      
              },
      ],
     },

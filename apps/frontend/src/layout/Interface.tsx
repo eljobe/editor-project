@@ -1,5 +1,5 @@
-import React, { MouseEventHandler } from 'react'
-import { Toolbar, Typography, Drawer, Divider, Box, Button, Container } from '@mui/material'
+import React from 'react'
+import { Toolbar, Typography, Drawer, Divider, Box, Container } from '@mui/material'
 import { NotesList, CreateButton } from '../notes'
 
 const drawerWidth = 240
