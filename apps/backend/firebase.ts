@@ -1,27 +1,14 @@
-import { initializeApp } from 'firebase/app'
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  query,
-  orderBy,
-  limit,
-  onSnapshot,
-  setDoc,
-  updateDoc,
-  doc,
-  serverTimestamp,
-} from 'firebase/firestore';
-import { Note } from 'model/note'
+import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
+import { Note } from 'model/note';
+
+import serviceAccount from "./serviceAccountKey.json";
 
 initializeApp({
-  apiKey: "AIzaSyCo_k4KIhJnzhztRHJSvTLCm4WjyyipvT4",
-  authDomain: "editor-pepper.firebaseapp.com",
-  projectId: "editor-pepper",
-  storageBucket: "editor-pepper.appspot.com",
-  messagingSenderId: "673074271391",
-  appId: "1:673074271391:web:888ffa3a5359395c81feaa"
+  credential: cert(serviceAccount as ServiceAccount)
 })
+
+const db = getFirestore()
 
 class NotesDatabase {
   notes: Map<string, Note>;
@@ -34,7 +21,7 @@ class NotesDatabase {
   }
   // Sets up a listener to populate the notes map when the database cahanges.
   initialize() {
-    onSnapshot(query(collection(getFirestore(), 'notes')), (snapshot) => {
+    db.collection('notes').onSnapshot((snapshot) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === 'removed') {
           this.notes.delete(change.doc.id)
@@ -59,7 +46,7 @@ class NotesDatabase {
       }
     ];
     const defaultTitle = 'Untitled';
-    const docRef = await addDoc(collection(getFirestore(), 'notes'), {
+    const docRef = await db.collection('notes').add({
       title: defaultTitle,
       content: defaultContent,
     });
@@ -70,7 +57,7 @@ class NotesDatabase {
 }
 
 // Setup a singleton in the global scope.
-const db = new NotesDatabase()
-db.initialize()
+const ndb = new NotesDatabase()
+ndb.initialize()
 
-export default db
+export default ndb
