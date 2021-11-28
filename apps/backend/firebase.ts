@@ -1,8 +1,8 @@
-import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-import { Note } from 'model/note';
+import { initializeApp, cert, ServiceAccount } from 'firebase-admin/app'
+import { getFirestore } from 'firebase-admin/firestore'
+import { Note } from 'model/note'
 
-import serviceAccount from "./serviceAccountKey.json";
+import serviceAccount from "./serviceAccountKey.json"
 
 initializeApp({
   credential: cert(serviceAccount as ServiceAccount)
@@ -11,12 +11,12 @@ initializeApp({
 const db = getFirestore()
 
 class NotesDatabase {
-  notes: Map<string, Note>;
+  notes: Map<string, Note>
   constructor(notes?: Map<string, Note>) {
     if (notes !== undefined) {
-      this.notes = notes;
+      this.notes = notes
     } else {
-      this.notes = new Map<string, Note>();
+      this.notes = new Map<string, Note>()
     }
   }
   // Sets up a listener to populate the notes map when the database cahanges.
