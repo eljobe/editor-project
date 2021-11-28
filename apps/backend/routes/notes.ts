@@ -51,7 +51,7 @@ const newNoteHandler: RequestHandler = async (_req, res: Response<NoteResponse>)
   res.json(note);
 }
 
-router.get('/new', newNoteHandler)
+router.put('/', newNoteHandler)
 router.get('/', notesHandler)
 router.ws('/:id', noteHandler)
 

@@ -10,8 +10,8 @@ const fetcher = async (
   input: RequestInfo,
   init: RequestInit
 ) => {
-  const res = await fetch(input, init);
-  return res.json();
+  const res = await fetch(input, init)
+  return res.json()
 }
 
 export const useNotesList = () => {
@@ -25,7 +25,9 @@ export const useNotesList = () => {
 }
 
 export const newNote = async () => {
-  fetch('http://localhost:3001/api/notes/new')
+  fetch('http://localhost:3001/api/notes', {
+    method: "PUT"
+  })
 }
 
 export const useNote = (id: string) => {
